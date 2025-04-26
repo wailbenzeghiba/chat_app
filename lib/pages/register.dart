@@ -1,39 +1,24 @@
-import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/MyButton.dart';
 import 'package:chat_app/components/myTextField.dart';
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class login extends StatefulWidget {
+class Register extends StatefulWidget {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  // ignore: non_constant_identifier_names
+  final TextEditingController _ConfirmPwController = TextEditingController();
 
   final void Function()? ontap;
-  login({super.key, required this.ontap});
+  Register({super.key, required this.ontap});
 
-  void loginfun(BuildContext context) async {
-    final authService = AuthService();
-    try 
-    {
-      await authService.signInWithEmailAndPassword(_emailController.text,_passwordController.text);
-    } catch (e) 
-    {
-      if (context.mounted)
-      {
-      showDialog( context: context, builder:  (context) => AlertDialog(title: Text(e.toString()
-      ),) );
-      }
-    }
-
-
-  }
+  // ignore: non_constant_identifier_names
+  void RegisterFun() {}
 
   @override
-  State<login> createState() => _loginState();
+  State<Register> createState() => _RegisterState();
 }
 
-// ignore: camel_case_types
-class _loginState extends State<login> {
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +37,7 @@ class _loginState extends State<login> {
             const SizedBox(height: 50),
 
             Text(
-              'Welcome back!!',
+              'Lets Create An Account For You!',
               style: TextStyle(
                 color: Theme.of(context).colorScheme.inversePrimary,
                 fontWeight: FontWeight.w500,
@@ -73,21 +58,35 @@ class _loginState extends State<login> {
               obsecureText: true,
               controller: widget._passwordController,
             ),
+            const SizedBox(height: 10),
+            Mytextfield(
+              hintTextt: 'confirm Password',
+              obsecureText: true,
+              controller: widget._ConfirmPwController,
+            ),
             const SizedBox(height: 25),
-            Mybutton(text: 'Login', ontap: () => widget.loginfun(context),),
+            Mybutton(text: 'Sign up', ontap: widget.RegisterFun),
             const SizedBox(height: 25),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                
-                Text('Not Registered Yet? ', style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary , fontSize: 15),),
+                Text(
+                  'Already Have An Account? ',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                    fontSize: 15,
+                  ),
+                ),
                 GestureDetector(
                   onTap: widget.ontap,
-                  
-                  child: Text('Create An Account!', style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),))
+                  child: Text(
+                    'Sign In Here!',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  ),
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

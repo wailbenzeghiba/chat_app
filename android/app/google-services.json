@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "967106231298",
+    "project_id": "chatappzouaoui",
+    "storage_bucket": "chatappzouaoui.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967106231298:android:ec3fa97e80fc4941623b1b",
+        "android_client_info": {
+          "package_name": "com.example.chat_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmuNAsYyMywNlC5LOLIQxEED6aa3rOl88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
