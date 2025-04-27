@@ -67,7 +67,7 @@ class _HomepageState extends State<Homepage> {
       text: userData["email"],
       onTap: () 
       {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Chatpage(RecieverEmail: userData["email"],),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Chatpage(RecieverEmail: userData["email"],recieverID: userData["uid"],),));
       },
     );
     } else 
