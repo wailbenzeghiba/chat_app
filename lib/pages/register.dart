@@ -1,3 +1,4 @@
+import 'package:chat_app/auth/auth_service.dart';
 import 'package:chat_app/components/MyButton.dart';
 import 'package:chat_app/components/myTextField.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,31 @@ class Register extends StatefulWidget {
   Register({super.key, required this.ontap});
 
   // ignore: non_constant_identifier_names
-  void RegisterFun() {}
+  void RegisterFun(BuildContext context) async {
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _auth = AuthService();
+    if (_passwordController.text == _ConfirmPwController.text ) {
+      try {
+       await _auth.signUpWithEmailPassword(
+          _emailController.text,
+          _passwordController.text,
+        );
+      } catch (e) {
+        if (context.mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(title: Text(e.toString())),
+        );
+        }
+      }
+    } else 
+    {
+      showDialog(
+          context: context,
+          builder: (context) => const AlertDialog(title: Text("Passwords Dont Match")),
+        );
+    }
+  }
 
   @override
   State<Register> createState() => _RegisterState();
@@ -65,7 +90,7 @@ class _RegisterState extends State<Register> {
               controller: widget._ConfirmPwController,
             ),
             const SizedBox(height: 25),
-            Mybutton(text: 'Sign up', ontap: widget.RegisterFun),
+            Mybutton(text: 'Sign up', ontap: () => widget.RegisterFun(context)),
             const SizedBox(height: 25),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
