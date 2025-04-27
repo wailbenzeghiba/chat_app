@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:chat_app/auth/auth_service.dart';
+import 'package:chat_app/services/auth/auth_service.dart';
 import 'package:chat_app/pages/settingsPage.dart';
 import 'package:flutter/material.dart';
 
